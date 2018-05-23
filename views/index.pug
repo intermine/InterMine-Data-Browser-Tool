@@ -1,0 +1,81 @@
+doctype html
+html(lang='en')
+
+  head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+    meta(name='description', content='')
+    meta(name='author', content='')
+
+    title InterMine Data Browser
+
+    include includes/css/core.pug
+
+    // Page level plugin CSS
+    link(href='vendor/datatables/dataTables.bootstrap4.css', rel='stylesheet')
+
+    include includes/css/custom.pug
+
+  body#page-top.fixed-nav.sticky-footer.bg-dark
+    include includes/navbar.pug
+    .content-wrapper
+      .container-fluid
+        // Breadcrumbs
+        ol.breadcrumb
+          li.breadcrumb-item
+            a(href='#') InterMine Browser
+          li.breadcrumb-item.active Dashboard
+        // Icon Cards
+        .row
+          .col-xl-6.col-sm-6.mb-3
+            .card.text-white.bg-primary.o-hidden.h-100
+              .card-body
+                .card-body-icon
+                  i.fa.fa-fw.fa-database
+                .mr-5#genesCardText
+                  | X Genes
+              a.card-footer.text-white.clearfix.small.z-1(href='genes')
+                span.float-left Search for Genes...
+                span.float-right
+                  i.fa.fa-angle-right
+          .col-xl-6.col-sm-6.mb-3
+            .card.text-white.bg-warning.o-hidden.h-100
+              .card-body
+                .card-body-icon
+                  i.fa.fa-fw.fa-database
+                .mr-5#proteinsCardText
+                  | X Proteins
+              a.card-footer.text-white.clearfix.small.z-1(href='proteins')
+                span.float-left Search for Proteins...
+                span.float-right
+                  i.fa.fa-angle-right
+          .row
+          
+          .col-lg-12
+            // Example Pie Chart Card
+            .card.mb-3
+              .card-header
+                i.fa.fa-pie-chart
+                |  General Statistics
+              .card-body
+                canvas#myPieChart(width='300%', height='100')
+            
+      // /.container-fluid
+      // /.content-wrapper
+
+      include includes/footer.pug
+
+      include includes/scroll-to-top.pug
+
+      include includes/js/core.pug
+
+      // Page level plugin JavaScript
+      script(src='vendor/chart.js/Chart.min.js')
+      script(src='vendor/datatables/jquery.dataTables.js')
+      script(src='vendor/datatables/dataTables.bootstrap4.js')
+
+      include includes/js/custom.pug
+
+      // Custom scripts for this page
+      script(src='javascripts/htb-charts.min.js')

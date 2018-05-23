@@ -1,0 +1,24 @@
+// Navigation
+nav#mainNav.navbar.navbar-expand-lg.navbar-light.bg-light.fixed-top
+	a.navbar-brand(href='/')
+		img(src="/img/intermine-logo.png")
+	div#headerButtons.col-md-10.text-center
+		a(href="/genes" data-toggle="tooltip" title="Change to Genes view")
+			button.btn.btn-primary.btn-space(type="button") Genes
+		a(href="/proteins" data-toggle="tooltip" title="Change to Proteins view")
+			button.btn.btn-primary.btn-space(type="button") Proteins
+		select.form-control(style="width: 150px; position: fixed; top: 10px; right: 75px;")
+			option(value="HumanMine") HumanMine
+	#navbarResponsive.navbar-collapse
+		ul#exampleAccordion.navbar-nav.navbar-sidenav.list-group.panel
+			li.nav-item(data-toggle='tooltip', data-placement='right', title='Search')
+				a.nav-link(href='/search', style='color:black')
+					i.fa.fa-fw.fa-search
+					span.nav-link-text
+					| Search
+			.card(style="width: 100%; max-width: 250px")
+				.card-header
+					a(data-toggle="collapse" href="#organismshortnameblock" aria-controls="organismshortnameblock")
+						i.fa.fa-caret-down  Organism short name
+				#organismshortnameblock.collapse.card-block(style="overflow: auto;")
+					#organismshortnamelist.ul.list-group.list-group-flush

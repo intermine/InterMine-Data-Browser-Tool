@@ -1,0 +1,54 @@
+doctype html
+html(lang='en')
+
+	head
+		meta(charset='utf-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		meta(name='viewport', content='width=device-width, initial-scale=1, shrink-to-fit=no')
+		meta(name='description', content='')
+		meta(name='author', content='')
+
+		title InterMine Data Browser
+
+		include includes/css/core.pug
+
+		// Page level plugin CSS
+		link(href='vendor/datatables/dataTables.bootstrap4.css', rel='stylesheet')
+
+		include includes/css/custom.pug
+
+	body#page-top.fixed-nav.sticky-footer.bg-dark
+		include includes/navbar.pug
+		.content-wrapper
+			.container-fluid
+				.row
+				
+				.col-lg-12
+					.card.mb-3
+						.card-header
+							i.fa.fa-pie-chart
+							|  General Statistics
+						.card-body(height='100px')
+							.row
+								.col-xl-12.col-sm-6.mb-3
+									canvas#genesViewPieChart1(width='300%', height='50%')
+					
+				
+				.row
+				
+				div#dataTable
+
+			include includes/footer.pug
+
+			include includes/scroll-to-top.pug
+
+			include includes/js/core.pug
+
+			// Page level plugin JavaScript
+			script(src='vendor/datatables/jquery.dataTables.js')
+			script(src='vendor/datatables/dataTables.bootstrap4.js')
+
+			include includes/js/custom.pug
+
+			// Custom scripts for this page
+			script(src='javascripts/genes-datatables.min.js')

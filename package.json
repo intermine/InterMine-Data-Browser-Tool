@@ -1,28 +1,37 @@
 {
-    "title": "HumanMine Data Brpwser",
-    "name": "humanmine-data-browser",
+    "title": "InterMine Data Brpwser",
+    "name": "intermine-data-browser",
     "version": "0.0.1",
-    "description": "A simple prototype for the HumanMine data browser",
-    "homepage": "https://startbootstrap.com/template-overviews/sb-admin",
+    "description": "A simple web-based data browser for InterMine",
+    "homepage": "https://github.com/AdrianBZG/InterMine-Data-Browser-Tool",
     "bugs": {
-        "url": "https://github.com/AdrianBZG/humanmine-data-browser/issues",
-        "email": ""
+        "url": "https://github.com/AdrianBZG/InterMine-Data-Browser-Tool/issues",
+        "email": "adrianrodriguezbazaga@gmail.com"
     },
-    "license": "MIT",
-    "author": "",
+    "scripts": {
+        "start": "gulp & node ./bin/www",
+        "dev": "gulp && webpack --config webpack.config.js",
+        "test": "mocha --timeout 10000"
+    },
+    "author": "Adrian Rodriguez Bazaga",
     "contributors": [
         ""
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/AdrianBZG/humanmine-data-browser"
+        "url": "https://github.com/AdrianBZG/InterMine-Data-Browser-Tool"
     },
     "dependencies": {
+        "cookie-parser": "~1.4.3",
+        "debug": "~2.6.9",
+        "http-errors": "~1.6.2",
+        "morgan": "~1.9.0",
+        "pug": "2.0.0-beta11",
         "bootstrap": "4.0.0",
         "browser-sync": "2.23.6",
         "chart.js": "2.7.1",
         "datatables.net-bs4": "1.10.16",
-        "express": "^4.16.2",
+        "express": "^4.16.3",
         "font-awesome": "4.7.0",
         "gulp-clean-css": "3.9.2",
         "gulp-header": "2.0.1",
@@ -36,6 +45,8 @@
     },
     "devDependencies": {
         "browser-sync": "2.23.6",
+        "chai": "^4.1.2",
+        "chai-http": "^4.0.0",
         "gulp": "^3.9.1",
         "gulp-clean-css": "3.9.2",
         "gulp-header": "2.0.1",
@@ -44,6 +55,7 @@
         "gulp-rename": "^1.2.2",
         "gulp-sass": "^3.1.0",
         "gulp-uglify": "3.0.0",
-        "imjs": "^3.15.1"
+        "imjs": "^3.15.1",
+        "mocha": "^5.2.0"
     }
 }
