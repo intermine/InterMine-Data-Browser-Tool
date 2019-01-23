@@ -1,3 +1,7 @@
+window.onload = function() {
+    //hidePreloader();
+}
+
 $(document).ready(function() {
 
     if(!sessionStorage.getItem('currentClassView')) {
@@ -47,6 +51,7 @@ $(document).ready(function() {
     ).then(
         function(table) {
             table.children.table.on("rendered", function(changeDetail) {
+                hidePreloader();
                 document.title = sessionStorage.getItem('currentClassView') + " in " + window.selectedMineName;
                 updateElements(table.history.currentQuery.constraints, "PieChart");
                 updateGeneLengthChart(table.history.currentQuery.constraints, "GeneLengthChart");
@@ -71,6 +76,7 @@ function handleCurrentClassFilter(currentClassView) {
 
     // Handle the events
     $('#' + currentClassView + 'SearchButton').click(function() {
+        showPreloader();
         if (window.currentClassViewFilter) clearCurrentClassViewConstraint();
 
 		var currentClassViewInput = $('#' + currentClassView + 'SearchInput').val();
@@ -267,4 +273,24 @@ function checkForHTTPS() {
     if (window.location.protocol.includes("https")) {
         $("#navbarResponsive").prepend("<div class='alert' id='httpsAlert'>You are currently viewing the HTTPS website. Due to security limitations, we are unable to show results from HTTP-only InterMines. You may be able to see more results if you <a href='http://im-browser-prototype.herokuapp.com/'>reload this site</a> via HTTP, and/or allow unsafe scripts to run.</div><br/>");
     }
+}
+
+/**
+ * A function that will Hide the Preloader
+ */
+
+function hidePreloader() {
+    $("#preloader").css("display", "none");
+    $("nav").css("display", "flex");
+    $(".content-wrapper").css("display", "block");
+}
+
+/**
+ * A function that will Show the Preloader
+ */
+
+function showPreloader() {
+    $("#preloader").css("display", "flex");
+    $("nav").css("display", "none");
+    $(".content-wrapper").css("display", "none");
 }

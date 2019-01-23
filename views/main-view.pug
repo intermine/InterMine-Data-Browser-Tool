@@ -12,8 +12,10 @@ html(lang='en')
 		include includes/css/custom.pug
 
 	body#page-top.fixed-nav.sticky-footer.bg-dark
+		div#preloader(style="display:flex;height:100vh;width:100vw;")
+			img(src="/img/preloader.svg" style="margin:auto;")
 		include includes/navbar.pug
-		.content-wrapper.row
+		.content-wrapper.row(style="display:none;")
 			.container-fluid
 				.row
 				

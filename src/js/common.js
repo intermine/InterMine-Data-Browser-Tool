@@ -281,6 +281,7 @@ function addCustomFilters() {
                     '<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Location" id="locationFilterLi"><a class="nav-link" data-toggle="collapse" href="#locationSearchCardBlock" aria-controls="locationSearchCardBlock" style="color:black;"><i class="fa fa-fw fa-location-arrow"></i><span class="nav-link-text"></span>Location</a>    <div class="card" style="width: 100%;">        <div class="collapse card-block" id="locationSearchCardBlock" style="overflow-y: auto; overflow-x:hidden;">            <div class="ul list-group list-group-flush" id="locationFilterList"></div>            <form-group class="ui-front">                <div class="row" style="align: center;"><input class="form-control" type="text" id="locationChromosomeSearchInput" placeholder="Chromosome (e.g. 12)" style="width: 100%; float:left; margin-left: 15px;" /></div>                <div class="row" style="align: center;"><input class="form-control" type="text" id="locationStartSearchInput" placeholder="Start" style="width: 45%; float:left; margin-left: 15px;" /><input class="form-control" type="text" id="locationEndSearchInput" placeholder="End" style="width: 45%;"                    /></div><button class="btn btn-success" type="button" style="width:100%;" id="locationSearchButton">Go!</button><button class="btn btn-secondary" type="button" style="width:100%;" id="locationResetButton">Reset</button></form-group>        </div>    </div></li>');
             
                 $('#locationSearchButton').click(function() {
+                    showPreloader();
                     if (window.locationFilter) clearLocationConstraint();
             
                     var chromosomeInput = $('#locationChromosomeSearchInput').val();
@@ -373,6 +374,7 @@ function addCustomFilters() {
                     '<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Expression" id="expressionFilterLi"><a class="nav-link" data-toggle="collapse" href="#expressionSearchCardBlock" aria-controls="expressionSearchCardBlock" style="color:black;"><i class="fa fa-fw fa-tasks"></i><span class="nav-link-text"></span>Expression</a><div class="card" style="width: 100%;"><div class="collapse card-block" id="expressionSearchCardBlock" style="overflow-y: auto; overflow-x:hidden;"><div class="ul list-group list-group-flush" id="expressionFilterList"></div><form-group class="ui-front"><div class="row" style="align: center;"><select class="form-control" id="expressionExpressionSelector" style="width: 45%; float:left; margin-left: 15px;"><option value="UP">UP</option><option value="DOWN">DOWN</option><option value="NONDE">NONDE</option></select><select class="form-control" id="expressionDatasetSelector" style="width: 45%;"><option value="All">All (Set)</option><option value="ArrayExpress accession: E-MTAB-62">E-MTAB-62</option><option value="E-MTAB-513 illumina body map">Illumina bodymap</option></select></div><div class="row" style="align: center;"><input class="form-control" type="text" id="expressionPvalueSearchInput" placeholder="P-value (Opt)" style="width: 45%; float:left; margin-left: 15px;"/><input class="form-control" type="text" id="expressionTstatisticSearchInput" placeholder="T-statistic (Opt)" style="width: 45%;"/></div><button class="btn btn-success" type="button" style="width:100%;" id="expressionSearchButton">Go!</button><button class="btn btn-secondary" type="button" style="width:100%;" id="expressionResetButton">Reset</button></form-group></div></div></li>');
 
                 $('#expressionSearchButton').click(function() {
+                    showPreloader();
                     if (window.expressionFilter) clearExpressionFilterConstraint();
                 
                     var expressionPvalue = $('#expressionPvalueSearchInput').val();
@@ -467,6 +469,7 @@ function addCustomFilters() {
                 });
 
                 $('#interactionsSearchButton').click(function() {
+                    showPreloader();
                     if (window.interactionsFilter) clearInteractionsConstraint();
             
                     var participant2Input = $('#interactionsParticipant2SearchInput').val();
@@ -555,6 +558,7 @@ function addCustomFilters() {
                                 '<div class="input-group" id="' + ui.item.value.replace(/[^a-zA-Z0-9]/g, '') + '"><label class="form-control">' + ui.item.value.slice(0, 22) + '</label><span class="input-group-btn"><button class="btn btn-sm" type="button" id="' + buttonId + '" style="height: 100%;">x</button></span></div>');
 
                             $("#" + buttonId).click(function() {
+                                //console.log("disease");
                                 remove(window.imTableConstraint["diseaseName"], ui.item.value);
                                 updateTableWithConstraints();
                                 $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
@@ -642,6 +646,7 @@ function addCustomFilters() {
 
                 // Add the search button
                 $('#clinvarSearchButton').click(function() {
+                    showPreloader();
                     if (window.clinVarFilter) clearClinVarConstraint();
             
                     var clinVarSignificanceSel = $('#clinvarClinicalSignificanceSearchInput').val();
@@ -763,6 +768,7 @@ function addCustomFilters() {
                 });
 
                 $('#proteinLocalisationSearchButton').click(function() {
+                    showPreloader();
                     if (window.proteinLocalisationFilter) clearProteinLocalisationFilterConstraint();
             
                     var proteinLocalisationCellTypeSearchInput = $('#proteinLocalisationCellTypeSearchInput').val();
