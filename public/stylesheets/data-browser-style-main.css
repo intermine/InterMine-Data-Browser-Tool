@@ -90,6 +90,11 @@ body {
   overflow-x: hidden;
 }
 
+nav {
+  /*For intial display of preloader*/
+  display: none !important;
+}
+
 body.sticky-footer {
   margin-bottom: 56px;
 }
@@ -113,6 +118,7 @@ body.fixed-nav {
 }
 
 .content-wrapper {
+  display: none !important;
   min-height: calc(100vh - 56px);
   padding-top: 1rem;
 }
@@ -256,6 +262,18 @@ button {
   display: flex;
   align-items: center;
   padding: 5px;
+}
+
+/* Preloader */
+#preloader {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+}
+
+#preloader-img {
+  margin: auto;
+  content: url("/img/preloader.svg");
 }
 
 .smaller {
