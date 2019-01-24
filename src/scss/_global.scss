@@ -92,11 +92,6 @@ body {
   overflow-x: hidden;
 }
 
-nav {
-  /*For intial display of preloader*/
-  display:none !important;
-}
-
 body.sticky-footer {
   margin-bottom: $sticky-footer-height;
   .content-wrapper {
@@ -116,8 +111,8 @@ body.fixed-nav {
 }
 
 .content-wrapper {
-  // For preloader !important is placed here
-  display:none !important;
+  // For preloader it is placed here
+  display:none;
   min-height: calc(100vh - #{$sticky-footer-height});
   padding-top: 1rem;
 }
