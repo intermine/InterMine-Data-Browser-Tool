@@ -354,6 +354,7 @@ function addCustomFilters() {
                 
                     window.imTable.query.addConstraint(filterQueryLocatedOn);            
                     window.locationFilter.push(window.imTable.query.constraints[window.imTable.query.constraints.length - 1]);
+                    hidePreloader();
                 });
             
                 $('#locationResetButton').click(function() {
@@ -418,6 +419,7 @@ function addCustomFilters() {
                         window.imTable.query.addConstraint(filterQueryDatasetName);            
                         window.expressionFilter.push(window.imTable.query.constraints[window.imTable.query.constraints.length - 1]);
                     }
+                    hidePreloader();
                 });
                 
                 $('#expressionResetButton').click(function() {
@@ -507,7 +509,7 @@ function addCustomFilters() {
                         window.imTable.query.addConstraint(filterQueryDatasetSel);            
                         window.interactionsFilter.push(window.imTable.query.constraints[window.imTable.query.constraints.length - 1]);
                     }
-                    
+                    hidePreloader();
                 });
             
                 $('#interactionsResetButton').click(function() {
@@ -547,7 +549,7 @@ function addCustomFilters() {
                         select: function(event, ui) {
                             event.preventDefault();
                             $("#diseasesSearchInput").val(ui.item.value);
-
+                            showPreloader();
                             // Filter the table
                             window.imTableConstraint["diseaseName"].push(ui.item.value);
                             updateTableWithConstraints();
@@ -558,11 +560,11 @@ function addCustomFilters() {
                                 '<div class="input-group" id="' + ui.item.value.replace(/[^a-zA-Z0-9]/g, '') + '"><label class="form-control">' + ui.item.value.slice(0, 22) + '</label><span class="input-group-btn"><button class="btn btn-sm" type="button" id="' + buttonId + '" style="height: 100%;">x</button></span></div>');
 
                             $("#" + buttonId).click(function() {
-                                //console.log("disease");
                                 remove(window.imTableConstraint["diseaseName"], ui.item.value);
                                 updateTableWithConstraints();
                                 $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
                             });
+                            hidePreloader();
                         },
                         focus: function(event, ui) {
                             event.preventDefault();
@@ -686,6 +688,7 @@ function addCustomFilters() {
                     // Add the significance constraint
                     window.imTable.query.addConstraint(filterQuerySignificanceSel);            
                     window.clinVarFilter.push(window.imTable.query.constraints[window.imTable.query.constraints.length - 1]);
+                    hidePreloader();
                 });
 
                 // Add the reset button
@@ -1018,7 +1021,6 @@ function updatePieChart(result, pieChartID) {
                 var index = elements[0]._index;
 
                 selectedSegment = window.pieChartObject.data.labels[index].split("(")[0].trim();
-
                 // Filter the table
                 window.imTable.query.addConstraint({
                     "path": "organism.shortName",
@@ -1071,6 +1073,7 @@ function createGoAnnotationFilter() {
                 },
                 select: function(event, ui) {
                     event.preventDefault();
+                    showPreloader();
                     $("#goAnnotationSearchInput").val(ui.item.value);
 
                     window.imTableConstraint["goAnnotation"].push(ui.item.value);
@@ -1086,6 +1089,7 @@ function createGoAnnotationFilter() {
                         updateTableWithConstraints();
                         $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
                     });
+                    hidePreloader();
                 },
                 focus: function(event, ui) {
                     event.preventDefault();
@@ -1106,7 +1110,7 @@ function createDatasetFilter() {
             $("#sidebarUl").append(
                 '<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dataset Name" id="datasetFilterLi"><a class="nav-link" data-toggle="collapse" href="#datasetNameSearchCardBlock" aria-controls="datasetNameSearchCardBlock" style="color:black;"><i class="fa fa-fw fa-database"></i><span class="nav-link-text"></span>Dataset Name</a><div class="card" style="width: 100%;">        <div class="collapse card-block" id="datasetNameSearchCardBlock" style="overflow-y: auto; overflow-x:hidden;">            <form-group class="ui-front">                <div id="datasetsSelector"></div>            </form-group><button class="btn btn-block btn-warning" id="btnDatasetViewMore" type="button">View more</button></div>    </div></li>');
         }
-        
+
         $.when(getDatasetNamesInClass()).done(function(result) {
             if (!window.datasetNamesLoaded) {
                 var availableDatasetNames = [];
@@ -1149,6 +1153,7 @@ function createDatasetFilter() {
 
                     $('#' + datasetName.replace(/[^a-zA-Z0-9]/g, '')).change(function() {
                         if ($(this).is(":checked")) {
+                            showPreloader();
                             var checkboxValue = $(this).val();
                             window.imTableConstraint["datasetName"].push(checkboxValue);
                         } else {
@@ -1156,6 +1161,7 @@ function createDatasetFilter() {
                             remove(window.imTableConstraint["datasetName"], checkboxValue);
                         }
                         updateTableWithConstraints();
+                        hidePreloader();
                     });
                 }
 
@@ -1164,6 +1170,7 @@ function createDatasetFilter() {
 
         });
     } catch (err) {
+        hidePreloader();
         $("#datasetFilterLi").remove();
         console.log(err);
     }
@@ -1192,6 +1199,7 @@ function createPathwaysNameFilter() {
                 },
                 select: function(event, ui) {
                     event.preventDefault();
+                    showPreloader();
                     $("#pathwayNameSearchInput").val(ui.item.value);
 
                     // Filter the table
@@ -1208,6 +1216,7 @@ function createPathwaysNameFilter() {
                         updateTableWithConstraints();
                         $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
                     });
+                    hidePreloader();
                 },
                 focus: function(event, ui) {
                     event.preventDefault();

@@ -117,7 +117,8 @@ function handleCurrentClassFilter(currentClassView) {
     
                 window.currentClassViewFilter.push(window.imTable.query.constraints[window.imTable.query.constraints.length - 1]);
             }
-		}
+        }
+        hidePreloader();
     });
 
     $('#' + currentClassView + 'ResetButton').click(function() {
