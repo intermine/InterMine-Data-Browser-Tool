@@ -113,7 +113,6 @@ body.fixed-nav {
 }
 
 .content-wrapper {
-  display: none;
   min-height: calc(100vh - 56px);
   padding-top: 1rem;
 }
@@ -261,14 +260,34 @@ button {
 
 /* Preloader */
 #preloader {
-  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+#preloader-background {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
   height: 100vh;
   width: 100vw;
 }
 
 #preloader-img {
-  margin: auto;
-  content: url("/img/preloader.svg");
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  background-image: url("/img/preloader.svg");
+  background-repeat: no-repeat;
+  background-position: center;
 }
 
 .smaller {
@@ -285,10 +304,6 @@ button {
 
 .z-1 {
   z-index: 1;
-}
-
-#mainNav {
-  display: none;
 }
 
 #mainNav .navbar-collapse {

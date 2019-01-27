@@ -280,9 +280,9 @@ function checkForHTTPS() {
  */
 
 function hidePreloader() {
-    $("#preloader").css("display", "none");
-    $("nav").css("display", "flex");
-    $(".content-wrapper").css("display", "block");
+    $("#preloader").fadeOut();
+    // $("nav").css("display", "flex");
+    // $(".content-wrapper").css("display", "block");
 }
 
 /**
@@ -290,7 +290,7 @@ function hidePreloader() {
  */
 
 function showPreloader() {
-    $("#preloader").css("display", "flex");
-    $("nav").css("display", "none");
-    $(".content-wrapper").css("display", "none");
+    $("#preloader").fadeIn();
+    // $("nav").css("display", "none");
+    // $(".content-wrapper").css("display", "none");
 }
