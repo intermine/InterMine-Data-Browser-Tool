@@ -1556,98 +1556,103 @@ function updateGeneLengthChart(constraints, geneLengthChartID) {
         var labelsData = [];
         var onHoverLabel = [];
         var colorsData = Array(result['results'].length).fill("#337ab7");
+        try{
+            // Statistical values
+            var uniqueValues = result['uniqueValues'];
+            var minimumValue = result['results'][0]['min'];
+            var maximumValue = result['results'][0]['max'];
+            var averageValue = parseFloat(result['results'][0]['average']).toFixed(3);
+            var elementsPerBucket = (maximumValue - minimumValue) / (result['results'][0].buckets);
+            var stdevValue = parseFloat(result['results'][0]['stdev']).toFixed(3);
+            var chartTitle = "Distribution of " + uniqueValues + " Gene Lengths";
+            var chartSubTitle = "Min: " + minimumValue + ". Max: " + maximumValue + ". Avg: " + averageValue + ". Stdev: " + stdevValue;
 
-        // Statistical values
-        var uniqueValues = result['uniqueValues'];
-        var minimumValue = result['results'][0]['min'];
-        var maximumValue = result['results'][0]['max'];
-        var averageValue = parseFloat(result['results'][0]['average']).toFixed(3);
-        var elementsPerBucket = (maximumValue - minimumValue) / (result['results'][0].buckets);
-        var stdevValue = parseFloat(result['results'][0]['stdev']).toFixed(3);
-        var chartTitle = "Distribution of " + uniqueValues + " Gene Lengths";
-        var chartSubTitle = "Min: " + minimumValue + ". Max: " + maximumValue + ". Avg: " + averageValue + ". Stdev: " + stdevValue;
-
-        for (var i = 0; i < result['results'].length - 1; i++) {
-            // Lower and upper limits for each bucket
-            var lowerLimit = Math.round(minimumValue + (elementsPerBucket * i));
-            var upperLimit = Math.round(minimumValue + (elementsPerBucket * (i+1)));
-            countData.push(Math.log2(result['results'][i]['count']) + 1);
-            labelsData.push(lowerLimit + " to " + upperLimit);
-            onHoverLabel.push(lowerLimit + " to " + upperLimit + ": " + result['results'][i]['count'] + " values");
-        }
-
-        // Plot
-        var barChartOptions = {
-            responsive: true,
-            maintainAspectRatio: false,
-            //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
-            scaleBeginAtZero : true,
-            elements: {
-                center: {
-                    text: '90%',
-                    color: '#FF6384', // Default is #000000
-                    fontStyle: 'Arial', // Default is Arial
-                    sidePadding: 20 // Default is 20 (as a percentage)
-                }
-            },
-            legend: {
-                display: false,
-                position: 'top',
-                onClick: function(e) {
-                    e.stopPropagation();
-                }
-            },
-            hover: {
-                mode: 'nearest',
-                intersect: true,
-            },
-            title: {
-                display: true,
-                text: [chartTitle, chartSubTitle],
-                position: 'bottom'
-            },
-            scales: {
-                xAxes: [{
-                    ticks: {
-                        beginAtZero: false,
-                        autoSkip: false,
-                        maxRotation: 90,
-                        minRotation: 90
-                    }
-                }],
-                yAxes: [{
-                    ticks: {
-                        beginAtZero: true,
-                        min: 0,
-                        display: false
-                    }
-                }]
-            },
-            tooltips: {
-                callbacks: {
-                    label: function(tooltipItem, data) {
-                        return onHoverLabel[tooltipItem.index];
+            for (var i = 0; i < result['results'].length - 1; i++) {
+                // Lower and upper limits for each bucket
+                var lowerLimit = Math.round(minimumValue + (elementsPerBucket * i));
+                var upperLimit = Math.round(minimumValue + (elementsPerBucket * (i+1)));
+                countData.push(Math.log2(result['results'][i]['count']) + 1);
+                labelsData.push(lowerLimit + " to " + upperLimit);
+                onHoverLabel.push(lowerLimit + " to " + upperLimit + ": " + result['results'][i]['count'] + " values");
+            }
+        } catch(err) {
+            continue;
+        } finally {
+            // Plot
+            var barChartOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+                scaleBeginAtZero : true,
+                elements: {
+                    center: {
+                        text: '90%',
+                        color: '#FF6384', // Default is #000000
+                        fontStyle: 'Arial', // Default is Arial
+                        sidePadding: 20 // Default is 20 (as a percentage)
                     }
                 },
-                custom: function(tooltip) {
-                    if (!tooltip.opacity) {
-                        document.getElementById(geneLengthChartID).style.cursor = 'default';
-                        return;
+                legend: {
+                    display: false,
+                    position: 'top',
+                    onClick: function(e) {
+                        e.stopPropagation();
+                    }
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true,
+                },
+                title: {
+                    display: true,
+                    text: [chartTitle, chartSubTitle],
+                    position: 'bottom'
+                },
+                scales: {
+                    xAxes: [{
+                        ticks: {
+                            beginAtZero: false,
+                            autoSkip: false,
+                            maxRotation: 90,
+                            minRotation: 90
+                        }
+                    }],
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true,
+                            min: 0,
+                            display: false
+                        }
+                    }]
+                },
+                tooltips: {
+                    callbacks: {
+                        label: function(tooltipItem, data) {
+                            return onHoverLabel[tooltipItem.index];
+                        }
+                    },
+                    custom: function(tooltip) {
+                        if (!tooltip.opacity) {
+                            document.getElementById(geneLengthChartID).style.cursor = 'default';
+                            return;
+                        }
                     }
                 }
-            }
-        };
+            };
 
-        window.geneLengthChartObject = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: labelsData,
-                datasets: [{
-                    data: countData,
-                    backgroundColor: colorsData,
-                }],
-            },
-            options: barChartOptions
-        });
+            window.geneLengthChartObject = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: labelsData,
+                    datasets: [{
+                        data: countData,
+                        backgroundColor: colorsData,
+                    }],
+                },
+                options: barChartOptions
+            });
+        }
+        
+
     });
 }
