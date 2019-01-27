@@ -797,30 +797,35 @@ function addCustomFilters() {
                     var filterQueryReliability = filter[0].filterQuery[4];
                     filterQueryReliability.value = proteinLocalisationReliabilitySelector;
 
-                    // Add the constraints
-                    if (proteinLocalisationCellTypeSearchInput) {
-                        window.imTable.query.addConstraint(filterQueryCellType);            
-                        window.proteinLocalisationFilter.push(window.imTable.query.constraints[window.imTable.query.constraints.length - 1]);
-                    }
+                    try{
+                        // Add the constraints
+                        if (proteinLocalisationCellTypeSearchInput) {
+                            window.imTable.query.addConstraint(filterQueryCellType);            
+                            window.proteinLocalisationFilter.push(window.imTable.query.constraints[window.imTable.query.constraints.length - 1]);
+                        }
 
-                    if (proteinLocalisationTissueSearchInput) {
-                        window.imTable.query.addConstraint(filterQueryTissue);            
-                        window.proteinLocalisationFilter.push(window.imTable.query.constraints[window.imTable.query.constraints.length - 1]);
-                    }
+                        if (proteinLocalisationTissueSearchInput) {
+                            window.imTable.query.addConstraint(filterQueryTissue);            
+                            window.proteinLocalisationFilter.push(window.imTable.query.constraints[window.imTable.query.constraints.length - 1]);
+                        }
 
-                    if (proteinLocalisationExpressionTypeSelector != "All") {
-                        window.imTable.query.addConstraint(filterQueryExpressionType);            
-                        window.proteinLocalisationFilter.push(window.imTable.query.constraints[window.imTable.query.constraints.length - 1]);
-                    }
+                        if (proteinLocalisationExpressionTypeSelector != "All") {
+                            window.imTable.query.addConstraint(filterQueryExpressionType);            
+                            window.proteinLocalisationFilter.push(window.imTable.query.constraints[window.imTable.query.constraints.length - 1]);
+                        }
 
-                    if (proteinLocalisationLevelSelector != "All") {
-                        window.imTable.query.addConstraint(filterQueryLevel);            
-                        window.proteinLocalisationFilter.push(window.imTable.query.constraints[window.imTable.query.constraints.length - 1]);
-                    }
+                        if (proteinLocalisationLevelSelector != "All") {
+                            window.imTable.query.addConstraint(filterQueryLevel);            
+                            window.proteinLocalisationFilter.push(window.imTable.query.constraints[window.imTable.query.constraints.length - 1]);
+                        }
 
-                    if (proteinLocalisationReliabilitySelector != "All") {
-                        window.imTable.query.addConstraint(filterQueryReliability);            
-                        window.proteinLocalisationFilter.push(window.imTable.query.constraints[window.imTable.query.constraints.length - 1]);
+                        if (proteinLocalisationReliabilitySelector != "All") {
+                            window.imTable.query.addConstraint(filterQueryReliability);            
+                            window.proteinLocalisationFilter.push(window.imTable.query.constraints[window.imTable.query.constraints.length - 1]);
+                        }
+                    } catch(err) {
+                        hidePreloader();
+                        console.log(err);
                     }
                 });
             
@@ -1576,7 +1581,7 @@ function updateGeneLengthChart(constraints, geneLengthChartID) {
                 onHoverLabel.push(lowerLimit + " to " + upperLimit + ": " + result['results'][i]['count'] + " values");
             }
         } catch(err) {
-            continue;
+            console.log(err );
         } finally {
             // Plot
             var barChartOptions = {
