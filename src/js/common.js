@@ -840,56 +840,64 @@ function addCustomFilters() {
             filter = availableCustomFilters.filter(function(v){
                 return v.filterName==='Protein-Domain';
             });
-
             if (filter.length > 0) {
                 $("#sidebarUl").append(
                     '<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Protein Domain Name" id="proteinDomainFilterLi"><a class="nav-link" data-toggle="collapse" href="#proteinDomainNameSearchCardBlock" aria-controls="proteinDomainNameSearchCardBlock" style="color:black;"><i class="fa fa-fw fa-product-hunt"></i><span class="nav-link-text"></span>Protein Domain Name</a><div class="card" style="width: 100%;"><div class="collapse card-block" id="proteinDomainNameSearchCardBlock" style="overflow: auto;"><div class="ul list-group list-group-flush" id="proteinDomainNameFilterList"></div><form-group class="ui-front"><input class="form-control" type="text" id="proteinDomainNameSearchInput" placeholder="e.g. immunoglobulin subtype"/></form-group></div></div></li>');
+                
+                try {
+                    $.when(getProteinDomainNamesInClass()).done(function(result) {
 
-                $.when(getProteinDomainNamesInClass()).done(function(result) {
-
-                    var availableProteinDomainNames = [];
-
-                    for (var i = 0; i < result.results.length; i++) {
-                        if (result.results[i]["item"] != null) {
-                            availableProteinDomainNames.push({
-                                label: result.results[i]["item"] + " (" + result.results[i]["count"] + ")",
-                                value: result.results[i]["item"]
-                            });
+                        var availableProteinDomainNames = [];
+    
+                        for (var i = 0; i < result.results.length; i++) {
+                            if (result.results[i]["item"] != null) {
+                                availableProteinDomainNames.push({
+                                    label: result.results[i]["item"] + " (" + result.results[i]["count"] + ")",
+                                    value: result.results[i]["item"]
+                                });
+                            }
                         }
-                    }
+    
+                        $("#proteinDomainNameSearchInput").autocomplete({
+                            minLength: 3,
+                            source: function(request, response) {
+                                var results = $.ui.autocomplete.filter(availableProteinDomainNames, request.term);
+                                response(results.slice(0, 15));
+                            },
+                            select: function(event, ui) {
+                                event.preventDefault();
+                                $("#proteinDomainNameSearchInput").val(ui.item.value);
+                                
+                                showPreloader();
 
-                    $("#proteinDomainNameSearchInput").autocomplete({
-                        minLength: 3,
-                        source: function(request, response) {
-                            var results = $.ui.autocomplete.filter(availableProteinDomainNames, request.term);
-                            response(results.slice(0, 15));
-                        },
-                        select: function(event, ui) {
-                            event.preventDefault();
-                            $("#proteinDomainNameSearchInput").val(ui.item.value);
-
-                            // Filter the table
-                            window.imTableConstraint["proteinDomainName"].push(ui.item.value);
-                            updateTableWithConstraints();
-
-                            var buttonId = ui.item.value.replace(/[^a-zA-Z0-9]/g, '') + "button";
-
-                            $("#proteinDomainNameFilterList").append(
-                                '<div class="input-group" id="' + ui.item.value.replace(/[^a-zA-Z0-9]/g, '') + '"><label class="form-control">' + ui.item.value.slice(0, 22) + '</label><span class="input-group-btn"><button class="btn btn-sm" type="button" id="' + buttonId + '" style="height: 100%;">x</button></span></div>');
-
-                            $("#" + buttonId).click(function() {
-                                remove(window.imTableConstraint["proteinDomainName"], ui.item.value);
+                                // Filter the table
+                                window.imTableConstraint["proteinDomainName"].push(ui.item.value);
                                 updateTableWithConstraints();
-                                $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
-                            });
-                        },
-                        focus: function(event, ui) {
-                            event.preventDefault();
-                            $("#proteinDomainNameSearchInput").val(ui.item.value);
-                        }
+    
+                                var buttonId = ui.item.value.replace(/[^a-zA-Z0-9]/g, '') + "button";
+    
+                                $("#proteinDomainNameFilterList").append(
+                                    '<div class="input-group" id="' + ui.item.value.replace(/[^a-zA-Z0-9]/g, '') + '"><label class="form-control">' + ui.item.value.slice(0, 22) + '</label><span class="input-group-btn"><button class="btn btn-sm" type="button" id="' + buttonId + '" style="height: 100%;">x</button></span></div>');
+    
+                                $("#" + buttonId).click(function() {
+                                    remove(window.imTableConstraint["proteinDomainName"], ui.item.value);
+                                    updateTableWithConstraints();
+                                    $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
+                                });
+                                hidePreloader();
+                            },
+                            focus: function(event, ui) {
+                                event.preventDefault();
+                                $("#proteinDomainNameSearchInput").val(ui.item.value);
+                            }
+                        });
+    
                     });
-
-                });
+                } catch(err) {
+                    hidePreloader();
+                    console.log(err);
+                }
+                
             }
 
             createDatasetFilter(); // Dataset filter should be the last one
@@ -1098,7 +1106,7 @@ function createDatasetFilter() {
             $("#sidebarUl").append(
                 '<li class="nav-item" data-toggle="tooltip" data-placement="right" title="Dataset Name" id="datasetFilterLi"><a class="nav-link" data-toggle="collapse" href="#datasetNameSearchCardBlock" aria-controls="datasetNameSearchCardBlock" style="color:black;"><i class="fa fa-fw fa-database"></i><span class="nav-link-text"></span>Dataset Name</a><div class="card" style="width: 100%;">        <div class="collapse card-block" id="datasetNameSearchCardBlock" style="overflow-y: auto; overflow-x:hidden;">            <form-group class="ui-front">                <div id="datasetsSelector"></div>            </form-group><button class="btn btn-block btn-warning" id="btnDatasetViewMore" type="button">View more</button></div>    </div></li>');
         }
-
+        
         $.when(getDatasetNamesInClass()).done(function(result) {
             if (!window.datasetNamesLoaded) {
                 var availableDatasetNames = [];
