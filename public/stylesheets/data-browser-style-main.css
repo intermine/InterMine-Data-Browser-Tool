@@ -109,6 +109,7 @@ body.sticky-footer .content-wrapper {
 
 body.fixed-nav {
   padding-top: 56px;
+  background-color: #e9ecef;
 }
 
 @media screen and (max-width: 991px) {
