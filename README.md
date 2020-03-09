@@ -72,14 +72,14 @@ You can contact the developers by opening a new issue in this repository [here](
 
 ## SCREENSHOTS
 
-Searching in HumanMine (Release 1.0.8)<br>
-<div style="text-align:center"><img src ="https://i.imgur.com/cOELTaQ.png" /></div>
+Searching in HumanMine (Release 1.1.0)<br>
+<div style="text-align:center"><img src ="https://i.imgur.com/qdU3oiu.png" /></div>
 
-Searching in HumanMine for Alzheimer disease (Release 1.0.8)<br>
-<div style="text-align:center"><img src ="https://i.imgur.com/lY6WOZB.png" /></div>
+Searching in HumanMine for Alzheimer disease (Release 1.1.0)<br>
+<div style="text-align:center"><img src ="https://i.imgur.com/gP97sDM.png" /></div>
 
-Searching in FlyMine (Release 1.0.8)<br>
-<div style="text-align:center"><img src ="https://i.imgur.com/okutJlr.png" /></div>
+Searching in FlyMine (Release 1.1.0)<br>
+<div style="text-align:center"><img src ="https://i.imgur.com/4dgqXLl.png" /></div>
 
-Searching in HymenopteraMine (Release 1.0.8)<br>
-<div style="text-align:center"><img src ="https://i.imgur.com/tK4hbhS.png" /></div>
+Searching in HymenopteraMine (Release 1.1.0)<br>
+<div style="text-align:center"><img src ="https://i.imgur.com/Duhsj3P.png" /></div>
