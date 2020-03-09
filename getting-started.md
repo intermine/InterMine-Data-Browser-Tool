@@ -2,6 +2,8 @@
 
 If you're setting up the Data Browser locally, perhaps to fix a bug or contribute a pull request, here's how you can do it.
 
+For first time contributors, If you are finding it difficult to follow the processes listed below to set up this project locally, Please click this link https://komecreates.wordpress.com/2020/03/06/getting-started-with-intermine-data-browser-tool/ for a step by step tutorial that includes a demo video to show how to set up quickly and easily.
+
 ## Prerequisites
 
 A recent version of [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/)
