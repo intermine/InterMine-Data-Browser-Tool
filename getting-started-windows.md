@@ -22,7 +22,7 @@ This is usually the almighty step. You could end up spending long hours here if 
  - Type `git clone https://github.com/intermine/InterMine-Data-Browser-Tool.git`and press enter.. *This will transfer all the files and folders in the cloud repository (github) to your computer and have them ready for you to modify as you please.*
  - Once cloning is completed, **close git terminal**
  
- ![Right click on the directory and click git bash here](https://komecreates.files.wordpress.com/2020/03/11.png?w=400&h=)![Type git clone command](https://komecreates.files.wordpress.com/2020/03/9.png?w=400)![Click enter and wait for cloning to be complete](https://komecreates.files.wordpress.com/2020/03/10.png?w=200)
+ ![Right click on the directory and click git bash here](https://komecreates.files.wordpress.com/2020/03/11.png?w=400&h=)![Type git clone command](https://komecreates.files.wordpress.com/2020/03/9.png?w=400)![Click enter and wait for cloning to be complete](https://komecreates.files.wordpress.com/2020/03/10.png?w=400)
 
 Step 3- Install dependencies
 ----------------------------
@@ -37,7 +37,7 @@ Don’t be intimidated by this big word, all you need to do is install it. Follo
  - Type `npm start` to load a functional prototype of the project. Your browser *(google chrome in my case*) will automatically load the Intermine Data Browser Tool website server. 
  - You can now inspect site and find bugs and/or to get a better understanding of the project you are about to work. 
 
-![Open command prompt](https://komecreates.files.wordpress.com/2020/03/11-1.png?w=400)![navigate to project folder](https://komecreates.files.wordpress.com/2020/03/12.png?w=400)![Type npm install](https://komecreates.files.wordpress.com/2020/03/14.png?w=400)![npm installed completely](https://komecreates.files.wordpress.com/2020/03/15.png?w=400)![Type npm start](https://res.cloudinary.com/kome/image/upload/c_scale,q_100,w_200/v1584019079/npmstart_s8wgue.png)![npm successfully start](https://res.cloudinary.com/kome/image/upload/c_scale,q_100,w_400/v1584019079/browser_started_bhjffh.png)![project loaded on browser](https://res.cloudinary.com/kome/image/upload/c_scale,q_100,w_400/v1584019078/browserworking_copw4m.png)
+![Open command prompt](https://komecreates.files.wordpress.com/2020/03/11-1.png?w=400)![navigate to project folder](https://komecreates.files.wordpress.com/2020/03/12.png?w=400)![Type npm install](https://komecreates.files.wordpress.com/2020/03/14.png?w=400)![npm installed completely](https://komecreates.files.wordpress.com/2020/03/15.png?w=400)![Type npm start](https://res.cloudinary.com/kome/image/upload/c_scale,q_100,w_400/v1584019079/npmstart_s8wgue.png)![npm successfully start](https://res.cloudinary.com/kome/image/upload/c_scale,q_100,w_400/v1584019079/browser_started_bhjffh.png)![project loaded on browser](https://res.cloudinary.com/kome/image/upload/c_scale,q_100,w_400/v1584019078/browserworking_copw4m.png)
 
 And Hooray! We are done! Now you can open the project folder on your favorite editor and start working!
 
