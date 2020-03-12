@@ -6,7 +6,7 @@ This tutorial is for anyone out there interested in contributing to this Project
 Step 1 – Install Node Js
 ------------------------
 
- - Download the latest version of node js [here](https://nodejs.org/).
+ - Download and install the latest version of node js [here](https://nodejs.org/).
  - Run the `file` as administrator and follow prompt to install *(use all
    default options, no need to change anything)*  See screenshots below:
    ![Click Install](https://komecreates.files.wordpress.com/2020/03/1.png?w=200&h=)![Run](https://komecreates.files.wordpress.com/2020/03/2.png?w=200&h=)![Click next and follow prompt](https://komecreates.files.wordpress.com/2020/03/3.png?w=200&h=)![Accept terms and conditions](https://komecreates.files.wordpress.com/2020/03/4.png?w=200&h=)![Click next](https://komecreates.files.wordpress.com/2020/03/5.png?w=200&h=)![finish](https://komecreates.files.wordpress.com/2020/03/7.png?w=200&h=)
