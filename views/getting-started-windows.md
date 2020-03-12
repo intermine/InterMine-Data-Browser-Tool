@@ -36,7 +36,7 @@ Don’t be intimidated by this big word, all you need to do is install it. Follo
  - Type `npm start` to load a functional prototype of the project. Your browser *(google chrome in my case*) will automatically load the Intermine Data Browser Tool website server. 
  - You can now inspect site and find bugs and/or to get a better understanding of the project you are about to work. 
 
-![Open command prompt](https://komecreates.files.wordpress.com/2020/03/11-1.png?w=200)![navigate to project folder](https://komecreates.files.wordpress.com/2020/03/12.png?w=200)![Type npm install](https://komecreates.files.wordpress.com/2020/03/14.png?w=200)![npm installed completely](https://komecreates.files.wordpress.com/2020/03/15.png?w=200)
+![Open command prompt](https://komecreates.files.wordpress.com/2020/03/11-1.png?w=200)![navigate to project folder](https://komecreates.files.wordpress.com/2020/03/12.png?w=200)![Type npm install](https://komecreates.files.wordpress.com/2020/03/14.png?w=200)![npm installed completely](https://komecreates.files.wordpress.com/2020/03/15.png?w=200)![Type npm start](https://res.cloudinary.com/kome/image/upload/c_scale,q_auto:best,w_200/v1584019079/npmstart_s8wgue.png)![npm successfully start](https://res.cloudinary.com/kome/image/upload/c_scale,q_auto:best,w_200/v1584019079/browser_started_bhjffh.png)![project loaded on browser](https://res.cloudinary.com/kome/image/upload/c_scale,q_auto:best,w_200/v1584019078/browserworking_copw4m.png)
 
 And Hooray! We are done! Now you can open the project folder on your favorite editor and start working!
 
