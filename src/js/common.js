@@ -773,6 +773,7 @@ function addCustomFilters() {
                                 remove(window.imTableConstraint["diseaseName"], ui.item.value);
                                 updateTableWithConstraints();
                                 $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
+								$("#diseasesSearchInput").val("");
                             });
                         },
                         focus: function(event, ui) {
@@ -1089,6 +1090,7 @@ function addCustomFilters() {
                                 remove(window.imTableConstraint["proteinDomainName"], ui.item.value);
                                 updateTableWithConstraints();
                                 $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
+								$("#proteinDomainNameSearchInput").val("");
                             });
                         },
                         focus: function(event, ui) {
@@ -1147,6 +1149,7 @@ function addCustomFilters() {
                                        remove(window.imTableConstraint["phenotypeName"], ui.item.value);
                                        updateTableWithConstraints();
                                        $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
+									   $("#phenotypeNameSearchInput").val("");
                                    });
                                },
                                focus: function(event, ui) {
@@ -1461,6 +1464,7 @@ function createGoAnnotationFilter() {
                         remove(window.imTableConstraint["goAnnotation"], ui.item.value);
                         updateTableWithConstraints();
                         $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
+						$("#goAnnotationSearchInput").val("");
                     });
                 },
                 focus: function(event, ui) {
@@ -1583,6 +1587,7 @@ function createPathwaysNameFilter() {
                         remove(window.imTableConstraint["pathwayName"], ui.item.value);
                         updateTableWithConstraints();
                         $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
+						$("#pathwayNameSearchInput").val("");
                     });
                 },
                 focus: function(event, ui) {
