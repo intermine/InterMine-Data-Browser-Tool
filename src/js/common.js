@@ -213,8 +213,9 @@ function initializeSavedLists(){
                     window.imTableConstraint["savedList"] = window.imTableConstraint[
                       "savedList"
                     ].filter(title => title !== el.textContent);
-                }
-                else {
+                } else if(window.imTableConstraint['savedList'].length === 13) {
+                    window.alert('You can only select a max of 13 List Contraints')
+                } else {
                     el.dataset.listConstraintActive = "true";
                     el.classList.add('active');
                     var listName = el.textContent;
