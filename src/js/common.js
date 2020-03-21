@@ -14,7 +14,7 @@ function initializeStartupConfiguration() {
         "proteinDomainName" : [],
         "diseaseName" : [],
         "organism" : [],
-        "savedList": null
+        "savedList": []
     }; // 0 = GO annotation, 1 = Dataset Name, 2 = Pathway Name, 3 = Protein Domain Name, 4 = Disease Name
 
     window.interminesHashMap = null;
@@ -23,6 +23,7 @@ function initializeStartupConfiguration() {
     window.clinVarFilter = null;
     window.expressionFilter = null;
     window.organismFilterLetters = ["A","B","C","D","E","F","G","H","I","J"];
+    window.constraintCodes = ["N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
     window.organismFilter = null;
     window.organismColorsMap = {}
     window.proteinLocalisationFilter = null;
@@ -194,8 +195,8 @@ function initializeSavedLists(){
             $("#listManagerModal").modal("hide");
         });
         $("#listManagerResetButton").click(function() {
-            if(window.imTableConstraint['savedList']) {
-                window.imTableConstraint['savedList'] = null;
+            if(window.imTableConstraint['savedList'].length) {
+                window.imTableConstraint['savedList'] = [];
                 $('.saved-list-item').each(function(i, el_) {
                     el_.dataset.listConstraintActive = "false";
                     el_.classList.remove('active');
@@ -209,17 +210,15 @@ function initializeSavedLists(){
                 if(el.dataset.listConstraintActive === "true") {
                     el.dataset.listConstraintActive = "false";
                     el.classList.remove('active');
-                    window.imTableConstraint["savedList"] = null;
+                    window.imTableConstraint["savedList"] = window.imTableConstraint[
+                      "savedList"
+                    ].filter(title => title !== el.textContent);
                 }
                 else {
-                    $('.saved-list-item').each(function(i, el_) {
-                        el_.dataset.listConstraintActive = "false";
-                        el_.classList.remove('active');
-                    });
                     el.dataset.listConstraintActive = "true";
                     el.classList.add('active');
                     var listName = el.textContent;
-                    window.imTableConstraint['savedList'] = listName;
+                    window.imTableConstraint['savedList'].push(listName)
                 }
             });
         });
@@ -340,12 +339,17 @@ function updateTableWithConstraints() {
 
     // List Constraints
     if(window.imTableConstraint['savedList']) {
-        window.imTable.query.addConstraint({
-            "path": sessionStorage.getItem('currentClassView'),
+       const path = sessionStorage.getItem('currentClassView')
+       const constraints = window.imTableConstraint['savedList'].map((list, idx) => {
+         return {
+            path,
             "op": "IN",
-            "value": window.imTableConstraint["savedList"],
-            "code": "N"
-        });
+            "value": list,
+            "code": window.constraintCodes[idx]
+         }
+       })
+       
+       window.imTable.query.addConstraints(constraints);  
     }
 
     window.imTable.query.constraintLogic = window.tableConstraintLogic;
