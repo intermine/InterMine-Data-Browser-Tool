@@ -763,6 +763,7 @@ function addCustomFilters() {
                             // Filter the table
                             window.imTableConstraint["diseaseName"].push(ui.item.value);
                             updateTableWithConstraints();
+							$("#diseasesSearchInput").css("display", "none");
 
                             var buttonId = ui.item.value.replace(/[^a-zA-Z0-9]/g, '') + "button";
 
@@ -774,6 +775,7 @@ function addCustomFilters() {
                                 updateTableWithConstraints();
                                 $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
 								$("#diseasesSearchInput").val("");
+								$("#diseasesSearchInput").css("display", "block");
                             });
                         },
                         focus: function(event, ui) {
@@ -1080,6 +1082,7 @@ function addCustomFilters() {
                             // Filter the table
                             window.imTableConstraint["proteinDomainName"].push(ui.item.value);
                             updateTableWithConstraints();
+							$("#proteinDomainNameSearchInput").css("display", "none");
 
                             var buttonId = ui.item.value.replace(/[^a-zA-Z0-9]/g, '') + "button";
 
@@ -1091,6 +1094,7 @@ function addCustomFilters() {
                                 updateTableWithConstraints();
                                 $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
 								$("#proteinDomainNameSearchInput").val("");
+								$("#proteinDomainNameSearchInput").css("display", "block");
                             });
                         },
                         focus: function(event, ui) {
@@ -1139,6 +1143,7 @@ function addCustomFilters() {
                                    // Filter the table
                                    window.imTableConstraint["phenotypeName"].push(ui.item.value);
                                    updateTableWithConstraints();
+								   $("#phenotypeNameSearchInput").css("display", "none");
                 
                                    var buttonId = ui.item.value.replace(/[^a-zA-Z0-9]/g, '') + "button";
                 
@@ -1150,6 +1155,7 @@ function addCustomFilters() {
                                        updateTableWithConstraints();
                                        $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
 									   $("#phenotypeNameSearchInput").val("");
+									   $("#phenotypeNameSearchInput").css("display", "block");
                                    });
                                },
                                focus: function(event, ui) {
@@ -1454,6 +1460,7 @@ function createGoAnnotationFilter() {
 
                     window.imTableConstraint["goAnnotation"].push(ui.item.value);
                     updateTableWithConstraints();
+					$("#goAnnotationSearchInput").css("display", "none");
 
                     var buttonId = ui.item.value.replace(/[^a-zA-Z0-9]/g, '') + "button";
 
@@ -1465,6 +1472,7 @@ function createGoAnnotationFilter() {
                         updateTableWithConstraints();
                         $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
 						$("#goAnnotationSearchInput").val("");
+						$("#goAnnotationSearchInput").css("display", "block");
                     });
                 },
                 focus: function(event, ui) {
@@ -1577,6 +1585,7 @@ function createPathwaysNameFilter() {
                     // Filter the table
                     window.imTableConstraint["pathwayName"].push(ui.item.value);
                     updateTableWithConstraints();
+					$("#pathwayNameSearchInput").css("display", "none");
 
                     var buttonId = ui.item.value.replace(/[^a-zA-Z0-9]/g, '') + "button";
 
@@ -1588,6 +1597,7 @@ function createPathwaysNameFilter() {
                         updateTableWithConstraints();
                         $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
 						$("#pathwayNameSearchInput").val("");
+						$("#pathwayNameSearchInput").css("display", "block");
                     });
                 },
                 focus: function(event, ui) {
