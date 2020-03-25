@@ -1568,8 +1568,18 @@ function createDatasetFilter() {
 function createPathwaysNameFilter() {
     try {
         getPathwayNamesInClass(sessionStorage.getItem('currentClassView'), []).then(function(result) {
-
+			
             var availablePathwayNames = [];
+			
+			
+			var pathwayClosOnXButton = function(item) {
+				remove(window.imTableConstraint["pathwayName"], item);
+                        updateTableWithConstraints();
+                        $("#" + item.replace(/[^a-zA-Z0-9]/g, '')).remove();
+						$("#pathwayNameSearchInput").val("");
+						$("#pathwayNameSearchInput").css("display", "block");
+						
+						}
 
             for (var i = 0; i < result.results.length; i++) {
                 if (result.results[i]["item"] != null) {
@@ -1579,7 +1589,69 @@ function createPathwaysNameFilter() {
                     });
                 }
             }
-
+			
+			/*
+			Catch the enter key event on Pathways Names filter
+			*/
+			
+			$("#pathwayNameSearchInput").on('keyup', function (e) {
+			
+				$( "div" ).remove( ".pathway_error_message" );
+				var pathwaynameinputvalue = $("#pathwayNameSearchInput").val();
+				
+				if (e.keyCode == $.ui.keyCode.ENTER ) { 
+					
+					if(pathwaynameinputvalue != undefined && pathwaynameinputvalue != null && pathwaynameinputvalue != '') {
+						var part_vlaue_check = true;
+						var whole_value_check = true;
+						for(var i in availablePathwayNames) {
+							
+							var item = availablePathwayNames[i];
+							if(((item.label).toLowerCase() == pathwaynameinputvalue.toLowerCase()) || ((item.value).toLowerCase() == pathwaynameinputvalue.toLowerCase()) ) {
+								whole_value_check = false;
+								e.preventDefault();
+								
+								
+								$("#pathwayNameSearchInput").val(pathwaynameinputvalue);
+								var buttonId = pathwaynameinputvalue.replace(/[^a-zA-Z0-9]/g, '') + "button";
+								 
+								if($("#" + pathwaynameinputvalue.replace(/[^a-zA-Z0-9]/g, '')).length == 0){
+								$("#pathwayFilterList").append('<div class="input-group" id="' + pathwaynameinputvalue.replace(/[^a-zA-Z0-9]/g, '') + '"><label class="form-control">' + pathwaynameinputvalue.slice(0, 22) + '</label><span class="input-group-btn"><button class="btn btn-sm" type="button" id="' + buttonId + '" style="height: 100%;">x</button></span></div>');
+								}
+								window.imTableConstraint["pathwayName"].push(pathwaynameinputvalue);
+								updateTableWithConstraints();
+								$("#pathwayNameSearchInput").css("display", "none");
+								
+								break;
+							}
+								
+							if((item.label).toLowerCase().includes(pathwaynameinputvalue.toLowerCase()) ) {
+								part_vlaue_check = false;
+							
+						}
+							
+						}
+						
+						
+						
+						$("#" + buttonId).click(function() {
+							pathwayClosOnXButton(item.value);
+							});
+							
+							if(whole_value_check && part_vlaue_check) {
+								$("#pathwayNameSearchCardBlock").append("<div class='pathway_error_message' style='color:red;font-size:12px;background-color:#e9ecef'>The value does not exist</div>");
+								
+							
+							}
+				}	
+						
+				}
+				
+				
+				
+			});
+			
+				
             $("#pathwayNameSearchInput").autocomplete({
                 minLength: 3,
                 source: function(request, response) {
@@ -1593,17 +1665,16 @@ function createPathwaysNameFilter() {
                     // Filter the table
                     window.imTableConstraint["pathwayName"].push(ui.item.value);
                     updateTableWithConstraints();
+					$("#pathwayNameSearchInput").css("display", "none");
 
                     var buttonId = ui.item.value.replace(/[^a-zA-Z0-9]/g, '') + "button";
 
                     $("#pathwayFilterList").append(
                         '<div class="input-group" id="' + ui.item.value.replace(/[^a-zA-Z0-9]/g, '') + '"><label class="form-control">' + ui.item.value.slice(0, 22) + '</label><span class="input-group-btn"><button class="btn btn-sm" type="button" id="' + buttonId + '" style="height: 100%;">x</button></span></div>');
 
-                    $("#" + buttonId).click(function() {
-                        remove(window.imTableConstraint["pathwayName"], ui.item.value);
-                        updateTableWithConstraints();
-                        $("#" + ui.item.value.replace(/[^a-zA-Z0-9]/g, '')).remove();
-						$("#pathwayNameSearchInput").val("");
+                   
+				   $("#" + buttonId).click(function() {
+					   pathwayClosOnXButton(ui.item.value);
                     });
                 },
                 focus: function(event, ui) {
@@ -1613,7 +1684,9 @@ function createPathwaysNameFilter() {
             });
 
         });
-    } catch (err) {
+   
+
+   } catch (err) {
         $("#pathwayNameFilterLi").remove();
         console.log(err);
     }
