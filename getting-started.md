@@ -2,6 +2,7 @@
 
 If you're setting up the Data Browser locally, perhaps to fix a bug or contribute a pull request, here's how you can do it.
 
+For first time contributors using Windows, If you are finding it difficult to follow the processes listed below to set up this project locally, Please click this link [getting-started-windows](\getting-started-windows.md)
 ## Prerequisites
 
 A recent version of [node](https://nodejs.org/en/) and [npm](https://www.npmjs.com/)
